@@ -1,0 +1,22 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}
+Разместить объявление
+{% endblock %}
+
+{% block profile-nav-item %}
+<li class="nav-item">
+    <a class="nav-link active" href="{% url 'profile' %}">
+        <span style="font-weight: bold;">Профиль</span>
+    </a>
+</li>
+{% endblock %}
+
+{% block content %}
+<div class="col" style="margin: 50px;">
+  <div class="display-2">
+    <span class="badge bg-primary">Сейчас вы находитесь на сайте под ником "username".</span>
+  </div>
+</div>
+{% endblock %}
