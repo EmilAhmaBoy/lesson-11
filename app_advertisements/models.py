@@ -1,4 +1,6 @@
 from django.db import models
+from django.contrib import admin
+from django.utils.html import format_html
 
 
 class Advertisement(models.Model):
@@ -14,5 +16,15 @@ class Advertisement(models.Model):
     auction = models.BooleanField('Торг', help_text='Отметьте, если торг уместен')
     creation_date = models.DateTimeField(auto_now_add=True)
     modify_date = models.DateTimeField(auto_now=True)
+
+    @admin.display(description='Дата создания')
+    def created_at(self):
+        from django.utils import timezone
+        if self.creation_date.date() == timezone.now().date():
+            creation_time = self.creation_date.time().strftime('%H:%M:%S')
+            return format_html(
+                '<span style="color: green; font-weight: bold;">Сегодня в {}</span>', creation_time
+            )
+        return self.creation_date.strftime('%d.%m.%Y в %H:%M:%S')
 
 # Create your models here.
