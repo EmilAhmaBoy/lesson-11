@@ -27,4 +27,14 @@ class Advertisement(models.Model):
             )
         return self.creation_date.strftime('%d.%m.%Y в %H:%M:%S')
 
+    @admin.display(description='Дата изменения')
+    def modified_at(self):
+        from django.utils import timezone
+        if self.creation_date.date() == timezone.now().date():
+            creation_time = self.creation_date.time().strftime('%H:%M:%S')
+            return format_html(
+                '<span style="color: green; font-weight: bold;">Сегодня в {}</span>', creation_time
+            )
+        return self.creation_date.strftime('%d.%m.%Y в %H:%M:%S')
+
 # Create your models here.
