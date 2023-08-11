@@ -23,6 +23,9 @@ class Advertisement(models.Model):
     user = models.ForeignKey(User, verbose_name='Пользователь', on_delete=models.CASCADE)
     image = models.ImageField('Изображение', upload_to='advertisements_93/')
 
+    @admin.display(description='Изображение')
+    def image_display(self):
+        return format_html(f'<img src="{self.image.url}" height="100px"></img>')
 
     @admin.display(description='Дата создания')
     def created_at(self):
