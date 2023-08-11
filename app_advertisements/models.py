@@ -25,7 +25,10 @@ class Advertisement(models.Model):
 
     @admin.display(description='Изображение')
     def image_display(self):
-        return format_html(f'<img src="{self.image.url}" height="100px"></img>')
+        if self.image:
+            return format_html(f'<img src="{self.image.url}" height="100px"></img>')
+        else:
+            return 'Изображение отсутствует'
 
     @admin.display(description='Дата создания')
     def created_at(self):
