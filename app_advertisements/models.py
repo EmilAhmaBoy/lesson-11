@@ -1,6 +1,10 @@
 from django.db import models
 from django.contrib import admin
 from django.utils.html import format_html
+from django.contrib.auth import get_user_model
+
+
+User = get_user_model()
 
 
 class Advertisement(models.Model):
@@ -16,6 +20,9 @@ class Advertisement(models.Model):
     auction = models.BooleanField('Торг', help_text='Отметьте, если торг уместен')
     creation_date = models.DateTimeField(auto_now_add=True)
     modify_date = models.DateTimeField(auto_now=True)
+    user = models.ForeignKey(User, verbose_name='Пользователь', on_delete=models.CASCADE)
+    image = models.ImageField('Изображение', upload_to='advertisements_93/')
+
 
     @admin.display(description='Дата создания')
     def created_at(self):
