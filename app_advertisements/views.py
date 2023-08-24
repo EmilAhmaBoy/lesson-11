@@ -27,7 +27,6 @@ def advertisement_post(request):
     else:
         form = AdvertisementForm()
 
-    form = AdvertisementForm()
     context = {'form': form}
     return render(request, 'advertisement-post.html', context)
 
