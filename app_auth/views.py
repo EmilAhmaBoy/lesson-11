@@ -6,11 +6,11 @@ from django.urls import reverse_lazy
 
 # Create your views here.
 
-def register(request):
+def register_view(request):
     return render(request, 'app_auth/register.html')
 
 
-def login(request):
+def login_view(request):
     redirect_url = reverse('profile')
     if request.method == 'GET':
         if request.user.is_authenticated:
@@ -28,11 +28,11 @@ def login(request):
 
 
 @login_required(login_url=reverse_lazy('login'))
-def profile(request):
+def profile_view(request):
     return render(request, 'app_auth/profile.html')
 
 
-def logout(request):
+def logout_view(request):
     logout(request)
     return redirect(reverse('login'))
 
