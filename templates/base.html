@@ -35,6 +35,21 @@
         </a>
     </li>
     {% endblock %}
+
+    {% if user.is_authenticated %}
+    {% block profile-nav-item %}
+    <li class="nav-item">
+        <a class="nav-link" href="{% url 'profile' %}">
+            <span style="font-weight: bold;">Профиль</span>
+        </a>
+    </li>
+    {% endblock %}
+    <li class="nav-item">
+        <a class="nav-link" href="{% url 'logout' %}">
+            <span style="font-weight: bold;">Выйти</span>
+        </a>
+    </li>
+    {% else %}
     {% block register-nav-item %}
     <li class="nav-item">
         <a class="nav-link" href="{% url 'register' %}">
@@ -49,18 +64,7 @@
         </a>
     </li>
     {% endblock %}
-    {% block profile-nav-item %}
-    <li class="nav-item">
-        <a class="nav-link" href="{% url 'profile' %}">
-            <span style="font-weight: bold;">Профиль</span>
-        </a>
-    </li>
-    {% endblock %}
-    <li class="nav-item">
-        <a class="nav-link" href="{% url 'logout' %}">
-            <span style="font-weight: bold;">Выйти</span>
-        </a>
-    </li>
+    {% endif %}
 </ul>
 
 
